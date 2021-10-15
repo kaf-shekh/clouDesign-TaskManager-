@@ -1,0 +1,82 @@
+<div class="container mt-4">
+  <button class="btn btn-info mb-2" [routerLink]="['']">Home</button>
+  <div class="card">
+    <div class="card-header">
+      <span *ngIf="isAdd">Add Task </span>
+      <span *ngIf="!isAdd">Edit Task </span>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="taskForm" class="row">
+        <div class="col">
+
+          <!---- Title of Task ----->
+          <div class="form-group">
+            <label for="name">Title</label>
+            <input placeholder="Enter Your Task Title" formControlName="Title"
+              [ngClass]="{ 'is-invalid': submitted && taskForm.controls.Title.errors }"
+              class="form-control form-control-sm">
+            <div *ngIf="submitted && taskForm.controls.Title.hasError('required')" class="invalid-feedback">
+              <div *ngIf="taskForm.controls.Title.hasError('required')">Title is required</div>
+            </div>
+          </div>
+
+          <!----- Status of Task ------->
+          <div class="form-group pt-2">
+            <label for="name">Status</label>
+            <select class="form-control" formControlName="Status"
+              [ngClass]="{ 'is-invalid': submitted && taskForm.controls.Status.errors }"
+              class="form-control form-control-sm">
+              <option value="" selected disabled hidden class="text-danger">Select Status of task</option>
+              <option value="{{status.Open}}">{{status.Open}}</option>
+              <option value="{{status.inProgress}}">in-Progress</option>
+              <option value="{{status.Completed}}">{{status.Completed}}</option>
+            </select>
+            <div *ngIf="submitted && taskForm.controls.Status.hasError('required')" class="invalid-feedback">
+              <div *ngIf="taskForm.controls.Status.hasError('required')">Status is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <!------ Task Time -------->
+          <div class="form-group">
+            <label for="name">Time </label>
+            <input placeholder="ex: John Doe" formControlName="Datetime" type="datetime-local"
+              [ngClass]="{ 'is-invalid': submitted && taskForm.controls.Datetime.errors }"
+              class="form-control form-control-sm">
+            <div *ngIf="submitted && taskForm.controls.Datetime.hasError('required')" class="invalid-feedback">
+              <div *ngIf="taskForm.controls.Datetime.hasError('required')">Date time of task is required</div>
+            </div>
+          </div>
+          <!------- Description ------>
+          <div class="form-group pt-2">
+            <label for="name">Description</label>
+            <textarea placeholder="Enter task Description" formControlName="Description"
+              [ngClass]="{ 'is-invalid': submitted && taskForm.controls.Description.errors }"
+              class="form-control form-control-sm">
+          </textarea>
+            <div *ngIf="submitted && taskForm.controls.Description.hasError('required')" class="invalid-feedback">
+              <div *ngIf="taskForm.controls.Description.hasError('required')">Description is required</div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
+    <div class="card-footer">
+      <!------- Buttons ----->
+      <span class="btn-group mr-2">
+        <button class="btn btn-primary" (click)="save()"> Save
+        </button>
+      </span>
+      <span class="btn-group mr-2">
+        <button class="btn btn-secondary" (click)="cancel()"> Cancel
+        </button>
+      </span>
+      <span class="btn-group mr-2">
+        <button *ngIf="!isAdd" class="btn btn-danger" (click)="deleteTask()"> Delete
+        </button>
+      </span>
+
+    </div>
+  </div>
+</div>

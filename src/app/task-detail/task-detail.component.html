@@ -1,0 +1,30 @@
+<div class="card">
+  <div class="card-header">{{Title}}<span style="float: right;" [routerLink]="['/task',TaskId]"> Edit</span></div>
+  <div class="card-body">
+    <table class="table">
+      <tbody [routerLink]="['/task',TaskId]">
+        <tr>
+          <td>
+            <strong>Status:</strong>
+          </td>
+          <td>{{Status}}</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Date & Time:</strong>
+          </td>
+          <td> {{Datetime | date:'medium'}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Description:</strong>
+          </td>
+          <td>
+            {{Description}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

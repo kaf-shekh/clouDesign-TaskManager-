@@ -1,0 +1,48 @@
+<div class="container mt-4"><button class="btn btn-primary mb-2" [routerLink]="['/task']">Add Task
+  </button>
+  <div class="card">
+    <table class="table table-border">
+      <thead>
+        <tr class="text-center">
+          <th> Open </th>
+          <th> In Progress</th>
+          <th> Done </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr cdkDropListGroup>
+          <td class="col-md-4">
+            <!-- <div cdkDropList #OpenList="cdkDropList" [cdkDropListData]="Open"
+              [cdkDropListConnectedTo]="[inProgressList,CompleteList]" (cdkDropListDropped)="drop($event)"> cdkDrag-->
+            <div *ngFor="let item of Open">
+              <app-task-detail [Title]='item.Title' [Description]="item.Description" [Status]="item.Status"
+                [TaskId]="item.TaskId" [Datetime]="item.Datetime">
+              </app-task-detail>
+            </div>
+            <!-- </div> -->
+          </td>
+          <td class="col-md-4">
+            <!-- <div cdkDropList #inProgressList="cdkDropList" [cdkDropListData]="inProgress"
+              [cdkDropListConnectedTo]="[CompleteList,OpenList]" (cdkDropListDropped)="drop($event)"> cdkDrag-->
+            <div *ngFor="let item of inProgress">
+              <app-task-detail [Title]='item.Title' [Description]="item.Description" [Status]="item.Status"
+                [TaskId]="item.TaskId" [Datetime]="item.Datetime">
+              </app-task-detail>
+            </div>
+            <!-- </div> -->
+          </td>
+          <td class="col-md-4">
+            <!-- <div cdkDropList #CompleteList="cdkDropList" [cdkDropListData]="Complete"
+              [cdkDropListConnectedTo]="[inProgressList,OpenList]" (cdkDropListDropped)="drop($event)"> cdkDrag-->
+            <div *ngFor="let item of Complete">
+              <app-task-detail [Title]='item.Title' [Description]="item.Description" [Status]="item.Status"
+                [TaskId]="item.TaskId" [Datetime]="item.Datetime">
+              </app-task-detail>
+            </div>
+            <!-- </div> -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
